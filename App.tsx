@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   introtxt:{
-    fontSize: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
+    backgroundColor: 'aqua',
+    padding: '2%',
+    borderRadius: 25,
   },
 })
