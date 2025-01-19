@@ -1,11 +1,15 @@
 import { SafeAreaView, StyleSheet, Text} from 'react-native'
 import React from 'react'
-
+import {NavigationContainer} from '@react-navigation/native';
+import AppNavigation from './navigation';
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style ={styles.introtxt}>Introduction to React Native</Text>
-    </SafeAreaView>
+    // <SafeAreaView style={styles.container}>
+    //   <Text style ={styles.introtxt}>Introduction to React Native</Text>
+    // </SafeAreaView>
+    <NavigationContainer>
+        <AppNavigation/>
+    </NavigationContainer>
   );
 };
 

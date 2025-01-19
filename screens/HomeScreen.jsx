@@ -1,11 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>HomeScreen</Text>
-    </View>
+      <Pressable onPress={() => navigation.navigate('SignUp')}>
+        <Text>Sign Up</Text>
+      </Pressable>
+    </SafeAreaView>
   );
 };
 
