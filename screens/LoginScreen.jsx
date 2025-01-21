@@ -6,16 +6,9 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.loginContainer}>
-        <Text style={styles.logintxt}>Signup</Text>
+        <Text style={styles.logintxt}>Login</Text>
       </View>
       <View style={styles.textInputContainer}>
-        <TextInput
-          placeholder="Name"
-          keyboardType="default"
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={styles.textInput}
-        />
         <TextInput
           placeholder="Email"
           keyboardType="email-address"
@@ -35,12 +28,12 @@ const HomeScreen = ({navigation}) => {
       <Pressable
         onPress={() => navigation.navigate('SignUp')}
         style={styles.button}>
-        <Text style={styles.buttontxt}>Signup</Text>
+        <Text style={styles.buttontxt}>Login</Text>
       </Pressable>
       <View flexDirection="row">
-        <Text>Already a User? </Text>
-        <Pressable onPress={() => navigation.navigate('Login')}>
-          <Text style={{color: 'blue', fontWeight: '600'}}>Login</Text>
+        <Text>Haven't registered yet? </Text>
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
+          <Text style={{color: 'blue', fontWeight: '600'}}>Signup</Text>
         </Pressable>
       </View>
     </SafeAreaView>
