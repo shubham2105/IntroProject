@@ -1,8 +1,19 @@
 import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
+// import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const HomeScreen = ({navigation}) => {
+  // State variable to hold the password
+  const [password, setPassword] = useState('');
+
+  // State variable to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Function to toggle the password visibility state
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.loginContainer}>
