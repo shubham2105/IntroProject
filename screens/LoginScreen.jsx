@@ -1,9 +1,8 @@
 import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
-// import {MaterialCommunityIcons} from '@expo/vector-icons';
-
-const HomeScreen = ({navigation}) => {
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+const LoginScreen = ({navigation}) => {
   // State variable to hold the password
   const [password, setPassword] = useState('');
 
@@ -27,14 +26,21 @@ const HomeScreen = ({navigation}) => {
           autoCorrect={false}
           style={styles.textInput}
         />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntryTextContentType="password"
-          style={styles.textInput}
-        />
+        <View style={styles.passwordInputContainer}>
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={!showPassword}
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.passwordInput}
+          />
+          <Icon
+            name={showPassword ? 'eye-off' : 'eye'}
+            size={20}
+            color="#aaa"
+            onPress={toggleShowPassword}
+          />
+        </View>
       </View>
       <Pressable
         onPress={() => navigation.navigate('SignUp')}
@@ -51,7 +57,7 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -75,6 +81,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: '2%',
   },
+  passwordInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: '5%',
+    padding: '2%',
+  },
   textInput: {
     width: '100%',
     padding: '2%',
@@ -82,6 +99,9 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
     borderRadius: 5,
     borderColor: 'gray',
+  },
+  passwordInput: {
+    flex: 1,
   },
   button: {
     backgroundColor: 'blue',
