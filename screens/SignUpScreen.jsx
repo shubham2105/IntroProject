@@ -1,8 +1,18 @@
 import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HomeScreen = ({navigation}) => {
+  const [password, setPassword] = useState('');
+
+  // State variable to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Function to toggle the password visibility state
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.loginContainer}>
@@ -23,14 +33,21 @@ const HomeScreen = ({navigation}) => {
           autoCorrect={false}
           style={styles.textInput}
         />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntryTextContentType="password"
-          style={styles.textInput}
-        />
+        <View style={styles.passwordInputContainer}>
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={!showPassword}
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.passwordInput}
+          />
+          <Icon
+            name={showPassword ? 'eye-off' : 'eye'}
+            size={20}
+            color="#aaa"
+            onPress={toggleShowPassword}
+          />
+        </View>
       </View>
       <Pressable
         onPress={() => navigation.navigate('SignUp')}
@@ -71,6 +88,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: '2%',
   },
+  passwordInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: '5%',
+    padding: '2%',
+  },
   textInput: {
     width: '100%',
     padding: '2%',
@@ -78,6 +106,9 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
     borderRadius: 5,
     borderColor: 'gray',
+  },
+  passwordInput: {
+    flex: 1,
   },
   button: {
     backgroundColor: 'blue',
