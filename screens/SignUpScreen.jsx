@@ -43,7 +43,7 @@ const HomeScreen = ({navigation}) => {
           />
           <Icon
             name={showPassword ? 'eye-off' : 'eye'}
-            size={20}
+            size={16}
             color="#aaa"
             onPress={toggleShowPassword}
           />
