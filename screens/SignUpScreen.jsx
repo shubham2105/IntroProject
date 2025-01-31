@@ -1,10 +1,33 @@
-import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({navigation}) => {
+  // State variables to store the email and password
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // Function to sign up a user with email and password
+  const signUpTestFn = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        Alert.alert('User Signed Up Successfully');
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
 
   // State variable to track password visibility
   const [showPassword, setShowPassword] = useState(false);
@@ -20,6 +43,8 @@ const HomeScreen = ({navigation}) => {
       </View>
       <View style={styles.textInputContainer}>
         <TextInput
+          value={name}
+          onChangeText={setName}
           placeholder="Name"
           keyboardType="default"
           autoCapitalize="none"
@@ -27,6 +52,8 @@ const HomeScreen = ({navigation}) => {
           style={styles.textInput}
         />
         <TextInput
+          value={email}
+          onChangeText={setEmail}
           placeholder="Email"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -35,6 +62,8 @@ const HomeScreen = ({navigation}) => {
         />
         <View style={styles.passwordInputContainer}>
           <TextInput
+            value={password}
+            onChangeText={setPassword}
             placeholder="Password"
             secureTextEntry={!showPassword}
             autoCapitalize="none"
@@ -49,9 +78,7 @@ const HomeScreen = ({navigation}) => {
           />
         </View>
       </View>
-      <Pressable
-        onPress={() => navigation.navigate('SignUp')}
-        style={styles.button}>
+      <Pressable onPress={() => signUpTestFn()} style={styles.button}>
         <Text style={styles.buttontxt}>Signup</Text>
       </Pressable>
       <View flexDirection="row">
