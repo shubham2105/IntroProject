@@ -11,7 +11,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
 
-const HomeScreen = ({navigation}) => {
+const SignUpScreen = ({navigation}) => {
   // State variables to store the email and password
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,8 +21,17 @@ const HomeScreen = ({navigation}) => {
   const signUpTestFn = () => {
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        Alert.alert('User Signed Up Successfully');
+      .then(userCredential => {
+        const user = userCredential.user;
+        return user
+          .updateProfile({displayName: name})
+          .then(() => {
+            return user.getIdTokenResult;
+          })
+          .then(idTokenResult => {
+            const userName = idTokenResult.class.name || user.displayName;
+            navigation.navigate('Home', {userName: userName});
+          });
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -99,7 +108,7 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {

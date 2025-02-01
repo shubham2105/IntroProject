@@ -1,11 +1,31 @@
-import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 const LoginScreen = ({navigation}) => {
-  // State variable to hold the password
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const onLogin = () => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(response => {
+        Alert.alert('User Logged In Successfully');
+        navigation.navigate('Home');
+        console.log('response :', response);
+      })
+      .catch(err => {
+        console.log('error :', err);
+      });
+  };
+  // State variable to hold the password
   // State variable to track password visibility
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,6 +40,8 @@ const LoginScreen = ({navigation}) => {
       </View>
       <View style={styles.textInputContainer}>
         <TextInput
+          value={email}
+          onChangeText={setEmail}
           placeholder="Email"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -28,6 +50,8 @@ const LoginScreen = ({navigation}) => {
         />
         <View style={styles.passwordInputContainer}>
           <TextInput
+            value={password}
+            onChangeText={setPassword}
             placeholder="Password"
             secureTextEntry={!showPassword}
             autoCapitalize="none"
@@ -42,9 +66,7 @@ const LoginScreen = ({navigation}) => {
           />
         </View>
       </View>
-      <Pressable
-        onPress={() => navigation.navigate('SignUp')}
-        style={styles.button}>
+      <Pressable onPress={() => onLogin()} style={styles.button}>
         <Text style={styles.buttontxt}>Login</Text>
       </Pressable>
       <View flexDirection="row">
