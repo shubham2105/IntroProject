@@ -25,13 +25,12 @@ const SignUpScreen = ({navigation}) => {
         const user = userCredential.user;
         return user
           .updateProfile({displayName: name})
-          .then(() => {
-            return user.getIdTokenResult;
-          })
-          .then(idTokenResult => {
-            const userName = idTokenResult.class.name || user.displayName;
-            navigation.navigate('Home', {userName: userName});
-          });
+          .then(() => user.reload());
+      })
+      .then(() => {
+        const user = auth().currentUser;
+        const userName = user.displayName;
+        navigation.navigate('Home', {userName});
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
