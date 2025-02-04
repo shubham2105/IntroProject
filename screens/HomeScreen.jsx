@@ -8,11 +8,15 @@ const HomeScreen = ({route}) => {
   const [userName, setUserName] = useState('');
   const [todo, setTodo] = useState('');
   useEffect(() => {
-    const user = auth().currentUser;
-    if (user) {
-      setUserName(user.displayName || 'User');
+    if (route.params?.userName) {
+      setUserName(route.params.userName);
+    } else {
+      const user = auth().currentUser;
+      if (user) {
+        setUserName(user.displayName);
+      }
     }
-  }, []);
+  }, [route.params]);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.greetText}>Welcome {userName} </Text>
@@ -23,9 +27,11 @@ const HomeScreen = ({route}) => {
           onChangeText={setTodo}
           autoCorrect={false}
         />
-        <Pressable>
-          <Text>Add Todo</Text>
-        </Pressable>
+        <View>
+          <Pressable onPress={() => {}}>
+            <Text>Add Todo</Text>
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );

@@ -16,41 +16,35 @@ const SignUpScreen = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // Function to sign up a user with email and password
-  const signUpTestFn = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        const user = userCredential.user;
-        return user
-          .updateProfile({displayName: name})
-          .then(() => user.reload());
-      })
-      .then(() => {
-        const user = auth().currentUser;
-        const userName = user.displayName;
-        navigation.navigate('Home', {userName});
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-          Alert.alert('That email address is already in use!');
-        }
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-          Alert.alert('That email address is invalid!');
-        }
-        console.error(error);
-      });
-  };
-
-  // State variable to track password visibility
   const [showPassword, setShowPassword] = useState(false);
 
   // Function to toggle the password visibility state
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  // Function to sign up a user with email and password
+  const signUp = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        return user.updateProfile({displayName: name});
+      })
+      .then(() => auth().currentUser.reload())
+      .then(() => {
+        const user = auth().currentUser;
+        navigation.navigate('Home', {userName: user.displayName});
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('That email address is already in use!');
+        } else if (error.code === 'auth/invalid-email') {
+          Alert.alert('That email address is invalid!');
+        } else {
+          Alert.alert('Error', error.message);
+        }
+      });
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -94,7 +88,7 @@ const SignUpScreen = ({navigation}) => {
           />
         </View>
       </View>
-      <Pressable onPress={() => signUpTestFn()} style={styles.button}>
+      <Pressable onPress={() => signUp()} style={styles.button}>
         <Text style={styles.buttontxt}>Signup</Text>
       </Pressable>
       <View flexDirection="row">

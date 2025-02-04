@@ -13,25 +13,26 @@ import auth from '@react-native-firebase/auth';
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const onLogin = () => {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(response => {
-        Alert.alert('User Logged In Successfully');
-        navigation.navigate('Home');
-        console.log('response :', response);
-      })
-      .catch(err => {
-        console.log('error :', err);
-      });
-  };
-  // State variable to hold the password
-  // State variable to track password visibility
   const [showPassword, setShowPassword] = useState(false);
 
   // Function to toggle the password visibility state
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const onLogin = () => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(response => {
+        const user = response.user;
+        Alert.alert('User Logged In Successfully');
+        navigation.navigate('Home', {userName: user.displayName});
+        console.log('response :', response);
+      })
+      .catch(err => {
+        console.log('error :', err);
+        Alert.alert('Login Failed', err.message);
+      });
   };
   return (
     <SafeAreaView style={styles.container}>
