@@ -1629,7 +1629,7 @@ PODS:
     - Firebase/Auth (= 11.7.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.22.1):
+  - RNGestureHandler (2.23.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1650,7 +1650,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated (4.0.0-beta.1):
+  - RNReanimated (4.0.0-nightly-20250205-a343322c2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1670,10 +1670,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 4.0.0-beta.1)
-    - RNReanimated/worklets (= 4.0.0-beta.1)
+    - RNReanimated/reanimated (= 4.0.0-nightly-20250205-a343322c2)
+    - RNReanimated/worklets (= 4.0.0-nightly-20250205-a343322c2)
     - Yoga
-  - RNReanimated/reanimated (4.0.0-beta.1):
+  - RNReanimated/reanimated (4.0.0-nightly-20250205-a343322c2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1693,9 +1693,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 4.0.0-beta.1)
+    - RNReanimated/reanimated/apple (= 4.0.0-nightly-20250205-a343322c2)
     - Yoga
-  - RNReanimated/reanimated/apple (4.0.0-beta.1):
+  - RNReanimated/reanimated/apple (4.0.0-nightly-20250205-a343322c2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1716,7 +1716,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (4.0.0-beta.1):
+  - RNReanimated/worklets (4.0.0-nightly-20250205-a343322c2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1736,9 +1736,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/worklets/apple (= 4.0.0-beta.1)
+    - RNReanimated/worklets/apple (= 4.0.0-nightly-20250205-a343322c2)
     - Yoga
-  - RNReanimated/worklets/apple (4.0.0-beta.1):
+  - RNReanimated/worklets/apple (4.0.0-nightly-20250205-a343322c2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2135,8 +2135,8 @@ SPEC CHECKSUMS:
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNFBApp: e0a2811ca35292b19d390e327612ada2bd115d0a
   RNFBAuth: 25a003b24f742c620d0ae40d4ec26ae07204ad33
-  RNGestureHandler: 7843b2a5cef477136a3c1f2ffae7c0b7f6b3255a
-  RNReanimated: 5bd020cdc08674d0616ce41d393a626f4f38abe3
+  RNGestureHandler: 990b0c1c8347f50d0cc91268e952dd1570334daf
+  RNReanimated: 15bf9e06019e4176a1e12824db8fb25bc21bce4d
   RNScreens: c5be23653cbe82a7e44c7719af3465e2f152c791
   RNVectorIcons: 8c7af262a73890caabbac2bb081ddbaa1b8a768c
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
